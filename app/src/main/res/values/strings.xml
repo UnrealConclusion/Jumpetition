@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Jumpetition</string>
+    <string name="title_text_view">Jumpetition</string>
+    <string name="new_competition_button">New Competition</string>
+    <string name="practice_button">Single Player</string>
+    <string name="high_score_button">High Score</string>
+    <string name="time_remaining_text_view">Time Remaining</string>
+    <string name="count_down_text_view">2:00</string>
+    <string name="count_text_view">Count</string>
+    <string name="jump_count_text_view">0</string>
+    <string name="ready_button">Ready</string>
+    <string name="my_name_text_edit">Please Enter a Name Then Hit Ready</string>
+    <string name="opponents_name_text_view">Waiting for Opponent ...</string>
+    <string name="lobby_title_text_view">Please select the opponent\'s device</string>
+</resources>
