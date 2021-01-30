@@ -30,6 +30,7 @@ public class ScoresDatabaseHelper extends SQLiteOpenHelper {
                 ");";
         sqLiteDatabase.execSQL(SQL_CREATE);
 
+        /*
         // insert some values
         ContentValues cv = new ContentValues();
 
@@ -42,6 +43,7 @@ public class ScoresDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_COUNT, 25);
         cv.put(COLUMN_MODE, "Competition");
         sqLiteDatabase.insert(TABLE_NAME, null, cv);
+         */
     }
 
     @Override

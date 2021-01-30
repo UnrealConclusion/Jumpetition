@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D9DCD6"
     tools:context=".ResultActivity">
 
     <TextView
@@ -13,6 +14,8 @@
         android:layout_marginTop="60dp"
         android:text="TextView"
         android:textSize="40sp"
+        android:textColor="#16425B"
+        android:fontFamily="@font/bungee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +28,8 @@
         android:layout_marginTop="100dp"
         android:text=""
         android:textSize="30sp"
+        android:textColor="#3A7CA5"
+        android:fontFamily="@font/bungee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +42,8 @@
         android:layout_marginTop="20dp"
         android:text=""
         android:textSize="30sp"
+        android:textColor="#3A7CA5"
+        android:fontFamily="@font/bungee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +55,8 @@
         android:layout_marginTop="50dp"
         android:text="Main Menu"
         android:onClick="mainMenuOnClick"
+        android:textColor="#81C3D7"
+        android:fontFamily="@font/bungee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
