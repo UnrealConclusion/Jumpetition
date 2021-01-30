@@ -10,6 +10,7 @@ public class mySocket {
     private static InputStream ip;
     private static OutputStream op;
 
+
     public static synchronized Socket getSocket(){
         return sock;
     }

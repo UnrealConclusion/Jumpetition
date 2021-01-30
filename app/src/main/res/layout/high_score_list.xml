@@ -8,7 +8,8 @@
         android:id="@+id/player_text_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="#3A7CA5"
+        android:fontFamily="@font/bungee"
         android:text="Me"/>
 
 
@@ -17,14 +18,16 @@
         android:id="@+id/count_text_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:fontFamily="@font/bungee"
+        android:textColor="#3A7CA5"
         android:text="55" />
 
     <TextView
         android:id="@+id/mode_text_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:fontFamily="@font/bungee"
+        android:textColor="#3A7CA5"
         android:text="Practice" />
 
 </LinearLayout>

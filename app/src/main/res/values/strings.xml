@@ -2,7 +2,7 @@
     <string name="app_name">Jumpetition</string>
     <string name="title_text_view">Jumpetition</string>
     <string name="new_competition_button">New Competition</string>
-    <string name="practice_button">Single Player</string>
+    <string name="practice_button">Practice</string>
     <string name="high_score_button">High Score</string>
     <string name="time_remaining_text_view">Time Remaining</string>
     <string name="count_down_text_view">2:00</string>

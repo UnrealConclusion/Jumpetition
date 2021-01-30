@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D9DCD6"
     tools:context=".LobbyActivity">
 
     <TextView
@@ -11,9 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textAlignment="center"
+        android:fontFamily="@font/bungee"
         android:text="@string/lobby_title_text_view"
-        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textColor="#16425B"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lobby_title_text_view" >
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@+id/lobby_title_text_view" />
 
     <TextView
         android:id="@+id/opponents_name_text_view"
@@ -37,9 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/opponents_name_text_view"
-        android:textSize="20dp"
+        android:textColor="#81C3D7"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/my_name_text_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -49,10 +55,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy"
-        android:inputType="textFilter"
         android:hint="@string/my_name_text_edit"
-        android:textSize="20dp"
+        android:inputType="textFilter"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/ready_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -60,11 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:onClick="readyOnClick"
         android:text="@string/ready_button"
+        android:fontFamily="@font/bungee"
+        android:textColor="#81C3D7"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="readyOnClick"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

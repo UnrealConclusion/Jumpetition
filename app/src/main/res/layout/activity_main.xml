@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#D9DCD6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,7 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/bungee"
         android:text="@string/title_text_view"
+        android:textColor="#16425B"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,12 +26,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/bungee"
+        android:onClick="newCompetitionOnClick"
         android:text="@string/new_competition_button"
+        android:textColor="#81C3D7"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_text_view"
-        android:onClick="newCompetitionOnClick" />
+        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
 
     <Button
@@ -36,25 +42,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/bungee"
+        android:onClick="practiceOnClick"
         android:text="@string/practice_button"
+        android:textColor="#81C3D7"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_competition_button"
-        android:onClick="practiceOnClick"/>
+        app:layout_constraintTop_toBottomOf="@+id/new_competition_button" />
 
     <Button
         android:id="@+id/high_score_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/bungee"
+        android:onClick="highScoreOnClick"
         android:text="@string/high_score_button"
+        android:textColor="#81C3D7"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/practice_button"
-        app:layout_constraintVertical_bias="0.0"
-        android:onClick="highScoreOnClick"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,12 +46,6 @@ public class JumpActivity extends AppCompatActivity implements SensorEventListen
     private float previousZ;
     private boolean inJump = true, isFirst = true;
 
-    // Wifi
-    private WifiP2pManager mP2pManager;
-    private WifiP2pManager.Channel mChannel;
-    private BroadcastReceiver mReceiver;
-    private IntentFilter mIntentFilter;
-
     private Handler handler;
     private Communicate communicate;
 
@@ -80,31 +74,10 @@ public class JumpActivity extends AppCompatActivity implements SensorEventListen
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    private void setupBroadCastReceiver(){
-        // initial setup
-        // Wifi
-        WifiManager mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        mP2pManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        mChannel = mP2pManager.initialize(this, Looper.getMainLooper(), null);
-        mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel, this, WiFiDirectBroadCastReceiver.JUMP_ACTIVITY);
-
-        // intent filter setup
-        mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-    }
-
-
     /* register the receiver on resume
      * */
     @Override
     public void onResume() {
-        if (MainActivity.COMPETITION_MODE == mode) {
-            mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel, this, WiFiDirectBroadCastReceiver.JUMP_ACTIVITY);
-            registerReceiver(mReceiver, mIntentFilter);
-        }
         super.onResume();
     }
 
@@ -112,9 +85,6 @@ public class JumpActivity extends AppCompatActivity implements SensorEventListen
      * */
     @Override
     public void onPause() {
-        if (MainActivity.COMPETITION_MODE == mode) {
-            unregisterReceiver(mReceiver);
-        }
         super.onPause();
     }
 
@@ -140,7 +110,6 @@ public class JumpActivity extends AppCompatActivity implements SensorEventListen
     {
         // start up communicate
         if (MainActivity.COMPETITION_MODE == mode){
-            setupBroadCastReceiver();
             communicate = new Communicate();
             communicate.start();
         }

@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HighScoreActivity"></activity>
+        <activity android:name=".HighScoreActivity" />
         <activity
             android:name=".ResultActivity"
             android:launchMode="singleTask"
@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".JumpActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -47,6 +47,10 @@
         <receiver
             android:name=".WiFiDirectBroadCastReceiver"
             tools:ignore="Instantiatable" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

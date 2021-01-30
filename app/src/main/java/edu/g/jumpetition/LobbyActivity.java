@@ -1,3 +1,4 @@
+
 package edu.g.jumpetition;
 
 import androidx.annotation.NonNull;
@@ -32,8 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -144,7 +143,7 @@ public class LobbyActivity extends AppCompatActivity {
         WifiManager mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mP2pManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mP2pManager.initialize(this, Looper.getMainLooper(), null);
-        mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel, this, WiFiDirectBroadCastReceiver.LOBBY_ACTIVITY);
+        mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel);
 
         // intent filter setup
         mIntentFilter = new IntentFilter();
@@ -158,7 +157,7 @@ public class LobbyActivity extends AppCompatActivity {
      * */
     @Override
     public void onResume() {
-        mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel, this, WiFiDirectBroadCastReceiver.LOBBY_ACTIVITY);
+        mReceiver = new WiFiDirectBroadCastReceiver(mP2pManager, mChannel);
         registerReceiver(mReceiver, mIntentFilter);
         super.onResume();
     }
@@ -207,24 +206,19 @@ public class LobbyActivity extends AppCompatActivity {
     /* start the jump activity
      * */
     private void startCompetition() {
-        if (!beenCalled) {
-            // msg.join();
-            // communicate.join();
-            beenCalled = true;
-            // System.out.println("All Joins: " + cc);
+        System.out.println("Starting now ");
             Intent intent = new Intent(this, JumpActivity.class);
             intent.putExtra("Mode", MainActivity.COMPETITION_MODE);
             intent.putExtra("opponentName", peerName);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
-        }
     }
 
     /*-- Listeners ------------------------------------------------------------------------------*/
 
     /* Searching for peers
-    * */
+     * */
     WifiP2pManager.PeerListListener peerLL = new WifiP2pManager.PeerListListener() {
         @Override
         public void onPeersAvailable(WifiP2pDeviceList wifiP2pDeviceList) {
@@ -253,25 +247,26 @@ public class LobbyActivity extends AppCompatActivity {
     };
 
     /* connect to the peer and run either a client or server thread depending on whether we are the host
-    * */
+     * */
     WifiP2pManager.ConnectionInfoListener connectionIL = new WifiP2pManager.ConnectionInfoListener() {
         @Override
         public void onConnectionInfoAvailable(WifiP2pInfo wifiP2pInfo) {
-            if (wifiP2pInfo != null){
+            if (wifiP2pInfo != null && !connected){
                 final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
-                // this device is the host start server thread
-                if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner){
-                    Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+                if (wifiP2pInfo.groupFormed){
+                    // this device is the host start server thread
+                    if (wifiP2pInfo.isGroupOwner){
+                        Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+                        Server server = new Server();
+                        server.start();
+                    }
+                    // this device is the client start a client thread
+                    else {
+                        Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
+                        Client client = new Client(groupOwnerAddress);
+                        client.start();
+                    }
                     connected = true;
-                    Server server = new Server();
-                    server.start();
-                }
-                // this device is the client start a client thread
-                else if (wifiP2pInfo.groupFormed){
-                    Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
-                    connected = true;
-                    Client client = new Client(groupOwnerAddress);
-                    client.start();
                 }
             }
         }
@@ -297,7 +292,7 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     /* client thread for the guest
-    * */
+     * */
     public class Client extends Thread{
         private String hostAddress;
 
@@ -320,7 +315,7 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     /* Thread Handles reception and sending of messages
-    * */
+     * */
     public class Communicate extends Thread{
         public static final int MESSAGE_NAME = 1;
         private boolean receivedMsg = false;
@@ -333,11 +328,11 @@ public class LobbyActivity extends AppCompatActivity {
             while(mySocket.getSocket()!=null){
                 try{
                     if (!receivedMsg){
-                    bytes = mySocket.getInputStream().read(buffer);
-                    if(bytes > 0){
-                        handler.obtainMessage(MESSAGE_NAME, bytes, -1, buffer).sendToTarget();
-                        receivedMsg = true;
-                    }}
+                        bytes = mySocket.getInputStream().read(buffer);
+                        if(bytes > 0){
+                            handler.obtainMessage(MESSAGE_NAME, bytes, -1, buffer).sendToTarget();
+                            receivedMsg = true;
+                        }}
                 } catch(IOException e){
                     e.printStackTrace();
                 }
@@ -347,7 +342,6 @@ public class LobbyActivity extends AppCompatActivity {
         public void write(byte[] bytes) throws IOException {
             mySocket.getOutputStream().write(bytes);
             mySocket.getOutputStream().flush();
-            // System.out.println("\nI got to write\n");
         }
     }
 
